@@ -32,16 +32,9 @@ public class TravelAgencyServlet extends HttpServlet {
 		Session result = null;
     	if (cookies != null) {
 			for (Cookie c : cookies) {
-				System.out.println(c.getName() + " = " + c.getValue());
 				if (c.getName().contentEquals("sessID")) {
 					Long sessionId = Long.parseLong(c.getValue());
-					System.out.println("Looking for session with ID " + sessionId);
 					result = sessionStorage.findSession(sessionId);
-					if (result == null) {
-						System.out.println("Session not found!");
-					} else {
-						System.out.println("Session found");
-					}
 					break;
 				}
 			}
@@ -57,7 +50,6 @@ public class TravelAgencyServlet extends HttpServlet {
 		PrintWriter payload = response.getWriter();
 		payload.append("[GET] ");
 		if (session == null) {
-			System.out.println("Session is null");
 			session = SessionFactory.createSession(sessionStorage);
 			if (sessionStorage.add(session)) {
 				payload.append("Created new session with id " + session.getId());
