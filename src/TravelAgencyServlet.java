@@ -32,7 +32,7 @@ public class TravelAgencyServlet extends HttpServlet {
 		Session result = null;
     	if (cookies != null) {
 			for (Cookie c : cookies) {
-				if (c.getName().contentEquals("sessID")) {
+				if (c.getName().equals("sessID")) {
 					Long sessionId = Long.parseLong(c.getValue());
 					result = sessionStorage.findSession(sessionId);
 					break;
